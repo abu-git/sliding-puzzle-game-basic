@@ -6,7 +6,7 @@
 }
 
 img {
-    max-width: 40%;
+    max-width: 100%;
 }
 
 .slider-game {
@@ -22,4 +22,8 @@ img {
     display: grid;
     width: 25em;
     height: 25em;
+}
+
+.hide {
+    display: none;
 }
