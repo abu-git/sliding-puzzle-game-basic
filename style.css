@@ -4,3 +4,22 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
+img {
+    max-width: 40%;
+}
+
+.slider-game {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 5%;
+
+}
+
+.container {
+    display: grid;
+    width: 25em;
+    height: 25em;
+}
