@@ -71,6 +71,12 @@ const gridGenerator = () => {
 };
 
 
+//Click the image
+const selectImage = (e) => {
+    
+};
+
+
 //Start button click should display the container
 startButton.addEventListener("click", () => {
     container.classList.remove("hide");
@@ -86,4 +92,5 @@ startButton.addEventListener("click", () => {
 //Display start screen first
 window.onload = () => {
     coverScreen.classList.remove("hide");
-}
+    container.classList.add("hide");
+};
