@@ -1,5 +1,5 @@
 //Initial Variable declarations
-const moves = document.getElementById("moves");
+const moves = document.querySelector("moves");
 const container = document.querySelector(".container");
 const startButton = document.getElementById("start-button");
 const coverScreen = document.querySelector(".cover-screen");
@@ -60,10 +60,10 @@ const gridGenerator = () => {
     for(let i = 0; i < 3; i++){
         for(let j = 0; j < 3; j++){
             let div = document.createElement("div");
-            div.setAttribute("data-position", `${i}_${i}`);
+            div.setAttribute("data-position", `${i}_${j}`);
             div.addEventListener("click", selectImage);
             div.classList.add("image-container");
-            div.innerHTML = `<img src="image_part_00${imagesArr[count]}.png" class="image ${imagesArr[count]==9 ? "target" : ""}" data index=${imagesArr[count]} />`;
+            div.innerHTML = `<img src="image_part_00${imagesArr[count]}.png" class="image ${imagesArr[count]==9 ? "target" : ""}" data-index=${imagesArr[count]} />`;
             count += 1;
             container.appendChild(div);
         }
@@ -96,6 +96,26 @@ const selectImage = (e) => {
         currentElement.setAttribute("data-index", targetIndex);
         targetElement.setAttribute("data-index", currentIndex);
         //Swap images
+        currentParent.appendChild(targetElement);
+        targetParent.appendChild(currentElement);
+        //Array Swap
+        let currentArrIndex = imagesArr.indexOf(currentIndex);
+        let targetArrIndex = imagesArr.indexOf(targetIndex);
+        [imagesArr[currentArrIndex], imagesArr[targetArrIndex]] = [imagesArr[targetArrIndex], imagesArr[currentArrIndex]];
+
+        //Win condition
+        if(imagesArr.join("") == "123456789"){
+            setTimeout(() => {
+                //When games end display the cover screen again
+                coverScreen.classList.remove("hide");
+                container.classList.add("hide");
+                result.innerText = `Total Moves: ${movesCount}`;
+                startButton.innerText = "Restart Game";
+            }, 1000);
+        }
+        //Increment movesCount
+        movesCount += 1;
+        moves.innerText = `Moves: ${movesCount}`;
     }
 };
 
