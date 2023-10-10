@@ -73,7 +73,30 @@ const gridGenerator = () => {
 
 //Click the image
 const selectImage = (e) => {
-    
+    e.preventDefault();
+    //Set current element
+    currentElement = e.target;
+    //target (the blank image)
+    let targetElement = document.querySelector(".target");
+    let currentParent = currentElement.parentElement;
+    let targetParent = targetElement.parentElement;
+
+    //get row and col values for both elements
+    const [row1, col1] = getCoords(currentParent);
+    const [row2, col2] = getCoords(targetParent);
+
+    if(checkAdjacent(row1, row2, col1, col2)){
+        //Swap proceedings
+        currentElement.remove();
+        targetElement.remove();
+        //Get image index (to be used later for manipulating array)
+        let currentIndex = parseInt(currentElement.getAttribute("data-index"));
+        let targetIndex = parseInt(targetElement.getAttribute("data-index"));
+        //Swap index
+        currentElement.setAttribute("data-index", targetIndex);
+        targetElement.setAttribute("data-index", currentIndex);
+        //Swap images
+    }
 };
 
 
